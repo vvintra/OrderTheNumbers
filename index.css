@@ -1,0 +1,322 @@
+*, *::before, *::after{
+  box-sizing: border-box;
+  font-family: 'Anton', sans-serif;
+}
+
+
+body{
+  background-color: #9a229a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-size: 5vmin;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  font-weight: normal !important;
+}
+
+#GameParent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 11vmin;
+  transform: scale(1,1);
+}
+
+#title{
+  padding: 2vmin;
+}   
+
+#game-board-normal {
+  --grid-size-x: 1;
+  --grid-size-y: 10;
+  --cell-size-x: 20vmin;
+  --cell-size-y: 5vmin;
+  --cell-gap: 1vmin;
+  display: grid;
+  grid-template-rows: repeat(var(--grid-size-y), var(--cell-size-y));
+  grid-template-columns: repeat(var(--grid-size-x), var(--cell-size-x));
+  background-color: #691869;
+  padding: 1vmin;
+  border-radius: 1vmin;
+  gap: var(--cell-gap);
+  position: relative;
+  width: calc((var(--cell-gap) * 2 ) + (var(--cell-gap) * (var(--grid-size-x) - 1)) + (var(--cell-size-x) * var(--grid-size-x)));
+}
+
+#draggables{
+  margin: 4vmin;
+  width: 20vmin;
+}
+
+#instructions{
+  position: absolute;
+  font-size: 3vmin;
+  left: 13vmin;
+  bottom: 10.9vmin;
+  width: 30vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0vmin;
+}
+
+#instructions p{
+  margin: 0;
+
+  width: 100%;
+}
+
+#madeBy{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  margin-left: 0.5vmin;
+  font-size: 3vmin;
+  cursor: pointer;
+}
+
+#moreGames{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  margin-right: 0.5vmin;
+  font-size: 3vmin;
+  cursor: pointer;
+}
+
+#privacyPolicy{
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  font-size: 2vmin;
+  cursor: pointer;
+}
+
+.helper{
+  width: 0;
+  height: 0;
+  position: relative;
+}
+
+.cell{
+  border-radius: 1vmin;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #9b839b;
+  border: 0px solid;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  height: 100%;
+  font-weight: normal !important;
+}
+
+.tile{
+  --y: 11;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20vmin;
+  height: 5vmin;
+  background-color: aliceblue;
+  border-radius: 1vmin;
+  top: calc(var(--y) * (var(--cell-size-y) + var(--cell-gap)) + var(--cell-gap));
+  left: var(--cell-gap);
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  font-weight: normal !important;
+}
+
+.result{
+  --y: 10;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20vmin;
+  height: 5vmin;
+  top: calc(var(--y) * (var(--cell-size-y) + var(--cell-gap)) + var(--cell-gap) + 0.5vmin);
+  left: var(--cell-gap);
+}
+
+.draggable{
+  cursor: move;
+}
+
+.draggable.dragging{
+  opacity: 0.5;
+}
+
+.container{
+  transition: all ease-in-out 0.1s;
+}
+
+.container.dragObjective{
+  box-sizing: border-box;
+  border: 3px solid;
+  margin: -3px;
+  border-color: orange;
+  /*transition: all ease-in-out 0.1s;*/
+}
+
+p{
+  position: absolute;
+  margin: 0;
+  overflow: hidden;
+}
+
+.noSelect {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.hidden{
+  display: none;
+}
+
+.buttonContainer{   
+  position: relative;
+  width: 0;
+  height: 0;
+  right: 16vmin;
+  bottom: 4.1vmin;
+  
+}
+
+.levelButton{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4vmin;
+  height: 4vmin;
+  padding: 0;
+  border: none;
+  padding: 1vmin;
+  border-radius: 1vmin;
+  cursor: pointer;
+  appearance: none;
+  font-size: 3vmin;
+}
+
+.veryEasy{
+  background-color: rgb(78, 235, 182);
+  bottom: 16vmin;
+  color: rgb(17, 80, 59);
+}
+
+.veryEasyAdapted{
+  bottom: 6vmin;
+  right: 1vmin;
+}
+
+.easy{
+  background-color:rgb(100, 238, 100);
+  bottom: 11vmin;
+  color: rgb(27, 70, 27);
+}
+
+.easyAdapted{
+  bottom: 1vmin;
+  right: 1vmin;
+}
+
+.normal{
+  background-color:darkorange;
+  bottom: 6vmin;
+  color: rgb(83, 46, 0);
+}
+
+.hard{
+  background-color:rgb(24, 24, 24);
+  bottom: 1vmin;
+  color: aliceblue;
+}
+
+.reload{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4vmin;
+  height: 4vmin;
+  padding: 0;
+  border: none;
+  background-color: #ff9191;
+  padding: 1vmin;
+  border-radius: 1vmin;
+  cursor: pointer;
+  appearance: none;
+}
+
+.reloadImg{
+  position: relative;
+  width: 2.75vmin;
+}
+
+.noNumber{
+  background-color: springgreen;
+  font-size: 3vmin;
+  cursor: pointer;
+  transition: all ease-in-out 0.25s;
+}
+
+.noNumber:hover{
+  background-color: rgb(2, 190, 96);
+  transition: all ease-in-out 0.25s;
+}
+
+.posibleOption
+{
+  background-color: #91ae8f;
+  color: #6b816a;
+  cursor: pointer;
+}
+
+.clickable{
+  cursor: pointer;
+}
+
+.clickable:hover{
+  background-color: #9cce99;
+  color: #83ad81;
+}
+
+.lost{
+  background-color: #ff9191;
+}
+
+
+
+@media (max-aspect-ratio: 1/1) {
+  #GameParent{
+      transform: scale(1.75,1.75);
+  }
+
+  .cell{
+      line-height: 110%;
+  }
+
+  *, *::before, *::after{
+      font-family: "BebasNeue", Arial, Helvetica, sans-serif;
+  }
+
+  #instructions{
+      display: none;
+  }
+}
